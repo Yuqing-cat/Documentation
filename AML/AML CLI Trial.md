@@ -1,4 +1,4 @@
-# AML CLI Trial
+# DSVM & AML CLI Trial
 This article is to record the steps of set-up AML CLI environment in chinese.
 本文将会用中文记录搭建AML CML环境的步骤。
 ## DSVM创建与试用
@@ -45,7 +45,7 @@ mv headers spambaseHeaders.data
 * capital_run_length_average: 表示在整个邮件中，大写字母的平均长度。
 * capital_run_length_total: 表示在整个邮件中，大写字母的长度总和。
 * spam: 邮件是否被拦截的标签(1 = 被拦截， 0 = 不被拦截)
-#### 利用Microsoft R open可视化数据集
+### 利用Microsoft R open可视化数据集
 完整的R脚本可以参考[这篇文章](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Linux/samples/r-sample.r)
 ```
 git clone https://github.com/Azure/Azure-MachineLearning-DataScience.git
@@ -94,9 +94,98 @@ ggtitle("Distribution of spam \nby frequency of !") +
 labs(fill="spam", y="Density")
 ```
 [distribution](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/distribution.PNG)
-#### 训练并测试一个机器学习模型
+### 训练并测试一个机器学习模型
+接下来，我们来试着训练一个能够区分垃圾邮件的机器学习模型。我们将采用决策树和随机森林这两种模型进行训练。
+在开始训练之前，我们需要将原始数据集分为训练集和测试集。其中，runif()函数能够生产均匀分布的随机数。
+```R
+rnd <- runif(dim(data)[1])
+trainSet = subset(data, rnd <= 0.7)
+testSet = subset(data, rnd > 0.7)
+```
+接下来利用[rpart()函数](https://cran.r-project.org/web/packages/rpart/rpart.pdf)创建决策树：
+```R
+model.rpart <- rpart(spam ~ ., method = "class", data = trainSet)
+plot(model.rpart)
+text(model.rpart)
+```
+[rpart]=(https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/rpart.PNG)
+通过一下两段代码，分别计算这一模型在训练集和测试集上的准确性：
+```R
+trainSetPred <- predict(model.rpart, newdata = trainSet, type = "class")
+t <- table(`Actual Class` = trainSet$spam, `Predicted Class` = trainSetPred)
+accuracy <- sum(diag(t))/sum(t)
+accuracy
+```
+得到0.9030359。
+```R
+testSetPred <- predict(model.rpart, newdata = testSet, type = "class")
+t <- table(`Actual Class` = testSet$spam, `Predicted Class` = testSetPred)
+accuracy <- sum(diag(t))/sum(t)
+accuracy
+```
+得到0.9024035。
 
+现在我们换成随机森林模型。该模型能够训练大量决策树，并输出一个来自所有个体决策树的类。它矫正了决策树模型过度拟合训练数据集的弱点。
+```R
+require(randomForest)
+trainVars <- setdiff(colnames(data), 'spam')
+model.rf <- randomForest(x=trainSet[, trainVars], y=trainSet$spam)
+
+trainSetPred <- predict(model.rf, newdata = trainSet[, trainVars], type = "class")
+table(`Actual Class` = trainSet$spam, `Predicted Class` = trainSetPred)
+
+testSetPred <- predict(model.rf, newdata = testSet[, trainVars], type = "class")
+t <- table(`Actual Class` = testSet$spam, `Predicted Class` = testSetPred)
+accuracy <- sum(diag(t))/sum(t)
+accuracy
+```
+测试集准确率提高到了0.9504734。
+### 将机器学习模型部署至Azure ML
+首先，创建Azure Machine Learning Workspace。并在Machine Learning Studio界面的Settings中找到Workspace ID和Authorization Token，填入如下命令行中。
+```sh
+require(AzureML)
+wsAuth = "<authorization-token>"
+wsID = "<workspace-id>"
+```
+为了便于部署，我们将模型简化。
+```R
+colNames <- c("char_freq_dollar", "word_freq_remove", "word_freq_hp", "spam")
+smallTrainSet <- trainSet[, colNames]
+smallTestSet <- testSet[, colNames]
+model.rpart <- rpart(spam ~ ., method = "class", data = smallTrainSet)
+```
+构造预测函数：
+```R
+predictSpam <- function(char_freq_dollar, word_freq_remove, word_freq_hp) {
+    predictDF <- predict(model.rpart, data.frame("char_freq_dollar" = char_freq_dollar,
+    "word_freq_remove" = word_freq_remove, "word_freq_hp" = word_freq_hp))
+    return(colnames(predictDF)[apply(predictDF, 1, which.max)])
+}
+```
+将该预测函数通过AzureML发布：
+```R
+spamWebService <- publishWebService("predictSpam","spamWebService",list("char_freq_dollar"="float", "word_freq_remove"="float","word_freq_hp"="float"),list("spam"="int"),wsID, wsAuth)
+```
+然而却出现了error。尚未明确原因。
+[error](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/error_publish.PNG)
+
+```R
+ws <- workspace(id = "143e84a9e3ab470c9414c45363c61d9e",
+authorization_token = "fz2QS5IEcCgdciS2GoLSoNpepVBfHUQMtdazsjFMeHoHVJEKQvcdiIv9kIi7wiy5TCKOKXgcZkNwOD0PsV9UJA==")
+```
 ## 建立AML CLI环境
+从DSVM回归到AML CLI本身。
+```sh
+wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
+sudo /opt/microsoft/azureml/initial\_setup.sh
+```
+成功后，登出再登入，使得设置生效。接下来就要创建AML CLI环境：
+```sh
+aml env setup
+```
+
+
+
 ## Real-Time Scenario
 
 
