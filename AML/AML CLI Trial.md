@@ -77,13 +77,14 @@ library(ggplot2)
 ggplot(data) + geom_histogram(aes(x=char_freq_exclamation), binwidth=0.25)
 ```
 得到了感叹号的频率直方图：
-[histogram](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/histogram.PNG)
+![histogram](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/histogram.PNG)
 可以看出，零柱的数据量很大，我们应该过滤掉频率为零的情况
 ```R
 email_with_exclamation = data[data$char_freq_exclamation > 0, ]
 ggplot(email_with_exclamation) + geom_histogram(aes(x=char_freq_exclamation), binwidth=0.25)
 ```
-[histogram2](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/histogram2.PNG)
+![histogram2](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/histogram2.PNG)
+
 取频率大于1的情况，并将数据集分为拦截与非拦截两类：
 ```R
 ggplot(data[data$char_freq_exclamation > 1, ], aes(x=char_freq_exclamation)) + 
@@ -93,7 +94,8 @@ xlab("spam") +
 ggtitle("Distribution of spam \nby frequency of !") +
 labs(fill="spam", y="Density")
 ```
-[distribution](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/distribution.PNG)
+![distribution](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/Distribution.PNG)
+
 ### 训练并测试一个机器学习模型
 接下来，我们来试着训练一个能够区分垃圾邮件的机器学习模型。我们将采用决策树和随机森林这两种模型进行训练。
 在开始训练之前，我们需要将原始数据集分为训练集和测试集。其中，runif()函数能够生产均匀分布的随机数。
@@ -108,7 +110,7 @@ model.rpart <- rpart(spam ~ ., method = "class", data = trainSet)
 plot(model.rpart)
 text(model.rpart)
 ```
-[rpart]=(https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/rpart.PNG)
+![rpart](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/rpart.PNG)
 通过一下两段代码，分别计算这一模型在训练集和测试集上的准确性：
 ```R
 trainSetPred <- predict(model.rpart, newdata = trainSet, type = "class")
