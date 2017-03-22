@@ -169,7 +169,7 @@ predictSpam <- function(char_freq_dollar, word_freq_remove, word_freq_hp) {
 spamWebService <- publishWebService("predictSpam","spamWebService",list("char_freq_dollar"="float", "word_freq_remove"="float","word_freq_hp"="float"),list("spam"="int"),wsID, wsAuth)
 ```
 然而却出现了error。尚未明确原因。
-[error](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/error_publish.PNG)
+![error](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/error_publish.PNG)
 
 ```R
 ws <- workspace(id = "143e84a9e3ab470c9414c45363c61d9e",
@@ -197,7 +197,7 @@ cat < ~/.amlenvrc >> ~/.bashrc
 https://<ip地址>:8000
 ```
 输入用户名密码后，登录至如下界面：
-[Jupyter](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/Jupyter.PNG)
+![Jupyter](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/Jupyter.PNG)
 关于JupyterHub，请参照[这篇教程](http://jupyterhub-tutorial.readthedocs.io/en/latest/)
 
 ## spark实时场景
@@ -210,8 +210,8 @@ aml env local
 aml service create realtime -f testing.py -m housing.model -s webserviceschema.json -n mytestapp
 ```
 页面会在‘create doker image’停留，
-[realtime-01](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/realtime-01.PNG)
-[realtime-02](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/realtime-02.PNG)
+![realtime-01](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/realtime-01.PNG)
+![realtime-02](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/realtime-02.PNG)
 需要注意的是，教程中给出的score其实是label，即输入的最后一个数值，而非机器学习后的结果。
 ## spark批处理场景
 同样的，在JupyterHub中按照说明运行batchwebservices.ipynb。
@@ -219,11 +219,11 @@ aml service create realtime -f testing.py -m housing.model -s webserviceschema.j
 cd notebooks\azureml\batch
 
 ```
-[batch-01](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/batch-01.PNG)
-[batch-02](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/batch-02.PNG)
+![batch-01](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/batch-01.PNG)
+![batch-02](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/batch-02.PNG)
 
 ## 初窥CNTK
-[Python API for CNTK](https://www.cntk.ai/pythondocs/gettingstarted.html)
+![Python API for CNTK](https://www.cntk.ai/pythondocs/gettingstarted.html)
 在Python的交互界面中
 ```Python
 import cnkt
@@ -269,9 +269,9 @@ mkdir cntk
 ```sh
 aml service create realtime -r cntk-py -f driver.py -m resnet.dnn -n cntksrvc2
 ```
-[cntk_realtime](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/cntk_realtime.PNG)
+![cntk_realtime](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/cntk_realtime.PNG)
 
-[error_cntk](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/error_cntk.PNG)
+![error_cntk](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/error_cntk.PNG)
 
 
 ```sh
