@@ -217,13 +217,17 @@ aml service create realtime -f testing.py -m housing.model -s webserviceschema.j
 同样的，在JupyterHub中按照说明运行batchwebservices.ipynb。
 ```sh
 cd notebooks\azureml\batch
-
+aml service create batch -f batch_score.py -n batchwebservice -i --input-data -i --trained-model=food_inspection.model -o --output-data=food_inspection_predictions.parquet
 ```
 ![batch-01](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/batch-01.PNG)
+
+```sh
+aml service run batch -n batchwebservice -w -i --input-data=../datasets/food_inspections2.csv
+```
 ![batch-02](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/batch-02.PNG)
 
 ## 初窥CNTK
-![Python API for CNTK](https://www.cntk.ai/pythondocs/gettingstarted.html)
+[Python API for CNTK](https://www.cntk.ai/pythondocs/gettingstarted.html)
 在Python的交互界面中
 ```Python
 import cnkt
@@ -270,7 +274,7 @@ mkdir cntk
 aml service create realtime -r cntk-py -f driver.py -m resnet.dnn -n cntksrvc2
 ```
 ![cntk_realtime](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/cntk_realtime.PNG)
-
+虽然创建服务成功，但系统返回没有该服务，并在score的时候报错。
 ![error_cntk](https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/error_cntk.PNG)
 
 
@@ -280,6 +284,7 @@ aml service run realtime -n cntksrvc2 -d '{"input": "[\"iVBORw0KGgoAAAANSUhEUgAA
 
 ## Tensorflow
 
+待更新。
 
 [create-DSVM]:https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/Create-DSVM.PNG
 [login]:https://github.com/Yuqing-cat/Documentation/blob/master/AML/img/login.PNG
