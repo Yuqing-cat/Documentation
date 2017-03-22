@@ -14,7 +14,8 @@ Title: Hands-On Machine LEarning with Scikit-Learn and Tensorflow
 * 基于相似用户的购买行为为客户推荐产品
 * 检测交易是否存在欺诈的可能性
 * 预测下一个财务周期的营收
-* [等等](https://www.kaggle.com/wiki/DataScienceUseCases)
+* [其他](https://www.kaggle.com/wiki/DataScienceUseCases)场景
+
 无论是因为什么让您决定学习机器学习并应用在您的项目中，我认为这是个绝好的主意！
 
 ## 目标与方法
@@ -30,8 +31,23 @@ Title: Hands-On Machine LEarning with Scikit-Learn and Tensorflow
 Python，特别是NumPy, Pandas和Matplotlib。
 
 ## 线路图
-[机器学习基础](#1)
+1. [机器学习基础](#1)
+ * 第一章、[机器学习面面观](#1.1)
+ * 第二章、[端到端的机器学习](#1.2)
+ * 第三章、[分类器](#1.3)
+ * 第四章、[训练模型](#1.4)
+2. [神经网络和深度学习](#2)
 
 to be continued...
 
-<h2 id = "1">机器学习基础</h2>
+
+<h1 id = "1">机器学习基础</h1>
+<h2 id = "1.1">机器学习面面观</h2>
+<h2 id = "1.2">端到端的机器学习</h2>
+在这一章里，你将扮演一个房地产公司新聘用的数据科学家
+### 真实数据
+* 
+
+<h2 id = "1.3">分类器</h2>
+<h2 id = "1.4">训练模型</h2>
+<h1 id = "2">神经网络和深度学习</h1>
