@@ -67,7 +67,15 @@ A - 现在由专家手动估算区域住房价格。一个团队收集一个相�
         - 文本、分类属性
             - from sklearn.preprocessing import LabelEncoder
             - from sklearn.preprocessing import OneHotEncoder
+            - from sklearn.preprocessing import LabelBinarizer
+        - 自定义转化
+            - from sklearn.base import BaseEstimator, TransformerMixin
+        - 特征缩放
+        - 变化管道(Transformation pipelines)
+            - from sklearn.pipeline import Pipeline
+            - from sklearn.preprocessing import StandardScaler
+        
         
 
-[RMSE]:https://github.com/Yuqing-cat/Documentation/tree/master/MLbooks/img/rmse.PNG
-[MAE]:https://github.com/Yuqing-cat/Documentation/tree/master/MLbooks/img/mae.PNG
+[RMSE]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/img/rmse.PNG
+[MAE]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/img/mae.PNG
