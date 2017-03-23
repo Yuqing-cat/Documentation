@@ -40,7 +40,7 @@ Python，特别是NumPy, Pandas和Matplotlib。
 2. [神经网络和深度学习](#2)
 
 
-[Chapter2]:(Documentation\MLbooks\Chapter2){:target="_blank"}
+[Chapter2]:Documentation\MLbooks\Chapter2.md
 
 to be continued...
 
