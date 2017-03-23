@@ -35,18 +35,17 @@ Python，特别是NumPy, Pandas和Matplotlib。
 1. [机器学习基础](#1)
  * 第一章、[机器学习面面观](#1.1)
  * 第二章、[端到端的机器学习][Chapter2]
- * 第三章、[分类器](#1.3)
+ * 第三章、[分类器][Chapter3]
  * 第四章、[训练模型](#1.4)
 2. [神经网络和深度学习](#2)
 
 
 [Chapter2]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/Chapter2.md
+[Chapter3]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/Chapter3.md
 
 to be continued...
 
 <h1 id = "1">机器学习基础</h1>
 <h2 id = "1.1">机器学习面面观</h2>
-
-<h2 id = "1.3">分类器</h2>
 <h2 id = "1.4">训练模型</h2>
 <h1 id = "2">神经网络和深度学习</h1>
