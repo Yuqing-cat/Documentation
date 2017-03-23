@@ -41,5 +41,5 @@ A - 现在由专家手动估算区域住房价格。一个团队收集一个相�
 #### 创建工作区
 
 
-[RMSE]:(Documentation\MLbooks\img\rmse.PNG)
-[MAE]:(Documentation\MLbooks\img\mae.PNG)
+[RMSE]:(\Documentation\MLbooks\img\rmse.PNG)
+[MAE]:(\Documentation\MLbooks\img\mae.PNG)

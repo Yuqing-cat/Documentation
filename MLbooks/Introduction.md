@@ -34,13 +34,13 @@ Python，特别是NumPy, Pandas和Matplotlib。
 ## 线路图
 1. [机器学习基础](#1)
  * 第一章、[机器学习面面观](#1.1)
- * 第二章、[端到端的机器学习][Chapter2](/Documentation/ReadingNotes/img/mae.png){:target="_blank"}
+ * 第二章、[端到端的机器学习][Chapter2]
  * 第三章、[分类器](#1.3)
  * 第四章、[训练模型](#1.4)
 2. [神经网络和深度学习](#2)
 
 
-[Chapter2]:(Documentation\MLbooks\Chapter2)
+[Chapter2]:(Documentation\MLbooks\Chapter2){:target="_blank"}
 
 to be continued...
 
