@@ -104,5 +104,5 @@ A - 现在由专家手动估算区域住房价格。一个团队收集一个相�
     
         
 
-[RMSE]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/img/rmse.PNG
-[MAE]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/img/mae.PNG
+[RMSE]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/img/rmse.png
+[MAE]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/img/mae.png
