@@ -64,17 +64,44 @@ A - 现在由专家手动估算区域住房价格。一个团队收集一个相�
     - 数据清洗
         - 去零
             - from sklearn.preprocessing import Imputer
-        - 文本、分类属性
-            - from sklearn.preprocessing import LabelEncoder
-            - from sklearn.preprocessing import OneHotEncoder
-            - from sklearn.preprocessing import LabelBinarizer
-        - 自定义转化
-            - from sklearn.base import BaseEstimator, TransformerMixin
-        - 特征缩放
-        - 变化管道(Transformation pipelines)
-            - from sklearn.pipeline import Pipeline
-            - from sklearn.preprocessing import StandardScaler
-        
+    - 文本、分类属性
+        - from sklearn.preprocessing import LabelEncoder
+        - from sklearn.preprocessing import OneHotEncoder
+        - from sklearn.preprocessing import LabelBinarizer
+    - 自定义转化
+        - from sklearn.base import BaseEstimator, TransformerMixin
+    - 特征缩放
+    - 变化管道(Transformation pipelines)
+        - from sklearn.pipeline import Pipeline
+        - from sklearn.preprocessing import StandardScaler
+* 选择并训练一个模型
+    - 在训练集上训练和评估
+        - from sklearn.linear_model import LinearRegression
+        - from sklearn.tree import DecisionTreeRegressor
+        - from sklearn.metrics import mean_squared_error
+            - rmse = np.sqrt(mean_squared_error(labels, predictions))
+    - 通过cross validation更好的评估
+        - from sklearn.model_selection import cross_val_score
+            - rmse_scores = np.sqrt(-cross_val_score(model, prepare_date, labels, scoring = "neg_mean_squared_error",cv=10))
+* 调试你的模型(Fine-tune)
+    - 网格搜索(Grid search)
+        - from sklearn.model_selection import GridSearchCV
+            - grid_search = GridSearchCV(forest_reg, param_grid, cv=5,
+                           scoring='neg_mean_squared_error')
+            - grid_search.best_params_
+            - grid_search.best_estimator_
+    - 随机搜索(Randomized search)
+    - 集成方法(Ensemble methods)
+    - 分析最佳模型及其误差
+        - feature_importances = grid_search.best_estimator_.feature_importances_
+        - sorted(zip(feature_importances, attributes), reverse=True)
+    - 在测试集评估你的系统
+* 启动，监控和维护你的系统
+
+    
+
+
+    
         
 
 [RMSE]:https://github.com/Yuqing-cat/Documentation/blob/master/MLbooks/img/rmse.PNG
