@@ -1,7 +1,8 @@
 Title: Chapter two. End to End Machine Learning Project
+# 第二章、端到端机器学习项目
 
 在这一章里，你将扮演一个房地产公司新聘用的数据科学家
-### 真实数据集
+## 真实数据集
 * [UC Irvine Machine Learning Repository](http://archive.ics.uci.edu/ml/)
 * [Kaggle Dataset](https://www.kaggle.com/datasets)
 * [Amazon’s AWS datasets](https://aws.amazon.com/fr/datasets/)
@@ -15,8 +16,8 @@ Title: Chapter two. End to End Machine Learning Project
     - [Datasets subreddit](https://www.reddit.com/r/datasets/)
 本章中，我们选择了StatLib的加州住房价格数据集。该数据集基于1990年加州的人口普查数据。
 
-### 宏观观察
-#### 构成问题
+## 宏观观察
+### 构成问题
 Q - 我们的业务目标是什么。毕竟，建立模型不会是最终目的。公司期望如何使用并受益于这一模型将会决定如何构建模型、选择什么算法、怎样测试性能以及花费多少精力调优。
 A - 模型的输出将会和其他的信号一起送到另一个机器学习系统中。这个下游系统将决定给定的区域是否值得投资。这将会直接影响公司的营收。
 Q - 现有的解决方案是什么(如果有的话)。
@@ -35,11 +36,38 @@ A - 现在由专家手动估算区域住房价格。一个团队收集一个相�
 ![RMSE][RMSE]
 尽管RSME通常是回归问题的首选。但在某些情况下，我们也会倾向于其他的函数。例如，假设有很多离群区域，那么**平均绝对误差**(MAE)会是更好的选择。
 ![MAE][MAE]
-#### 检查假设
-
-### 获取数据
-#### 创建工作区
 
 
-[RMSE]:/Documentation/tree/master/MLbooks/img/rmse.PNG
-[MAE]:/Documentation/MLbooks/img/mae.PNG
+## 实际操作
+在这一部分中，我们将在Jupyter Notebook中观察、训练我们的数据集。具体步骤包括：
+* 获取数据
+    - 创建工作区：初始化python workspace
+    - 下载数据： urllib; pandas
+    - 观察数据： 
+        - .head(); .info(); .value_counts(); .describe(); 
+        - %matplotlib inline
+            - hist(bins=a,figsize=(x,y))
+    - 切割数据集，划分测试、训练两部分
+        - from sklearn.model_selection import train_test_split
+        - from sklearn.model_selection import StratfiledShuffleSplit
+* 从数据可视化中获取洞察
+    - 可视化地理数据
+        - .plot(kind="scatter",x="longtitude,y="latitude",alpha= 0.4)
+    - 观察相关系数
+        - .corr()
+        - 越1，越正相关
+        - 越-1，越负相关
+        - from pandas.tools.plotting import scatter_matrix
+    - 尝试组合各种属性
+        - 人均、平均
+* 为机器学习算法准备数据
+    - 数据清洗
+        - 去零
+            - from sklearn.preprocessing import Imputer
+        - 文本、分类属性
+            - from sklearn.preprocessing import LabelEncoder
+            - from sklearn.preprocessing import OneHotEncoder
+        
+
+[RMSE]:https://github.com/Yuqing-cat/Documentation/tree/master/MLbooks/img/rmse.PNG
+[MAE]:https://github.com/Yuqing-cat/Documentation/tree/master/MLbooks/img/mae.PNG
